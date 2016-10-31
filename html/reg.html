@@ -1,0 +1,79 @@
+<!doctype html>
+<html>
+	<head>
+		<meta charset="UTF-8">
+		<title></title>
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<link href="../css/mui.min.css" rel="stylesheet" />
+	</head>
+	<body>
+		<header class="mui-bar mui-bar-nav">
+		    <h1 class="mui-title">H5学院注册</h1>
+		</header>
+		<div class="mui-content" style="margin-top: 10px;">
+		    <form class="mui-input-group">
+		        <div class="mui-input-row">
+		            <label>用户名：</label>
+		            <input id="username" type="text" name="usename" class="mui-input-clear" placeholder="请输入用户名">
+		        </div>
+		        <div class="mui-input-row">
+		            <label>密码：</label>
+		            <input id="password" type="password" name="password" class="mui-input-clear" placeholder="请输入密码">
+		        </div>
+		        <div class="mui-input-row">
+		            <label>昵称：</label>
+		            <input id="dearname" type="text" name="dearname" class="mui-input-clear" placeholder="请输入昵称">
+		        </div>
+		        
+		    </form>
+	        <div class="mui-content-padded" align="center">
+	        	<button type="button" class="mui-btn mui-btn-blue mui-btn-green">注册</button>
+	        </div>
+		</div>
+		<script src="../js/mui.min.js"></script>
+		<script type="text/javascript">
+			mui.init();
+			mui.plusReady(function(){
+				mui('.mui-content-padded').on('tap','.mui-btn-green',function(){
+					var username = mui('#username')[0].value;
+					var password = mui('#password')[0].value;
+					var dearname = mui('#dearname')[0].value;
+					if(username==''){
+						mui.toast('请输入您的用户名');
+						return;
+					};
+					if(password==''){
+						mui.toast('请输入您的密码')
+						return;
+					};
+					mui.ajax('http://192.168.199.214:8360/index/reg',{
+						data:{
+							username:username,
+							password:password,
+							dearname:dearname
+						},
+						dataType:'json',//服务器返回json格式数据
+						type:'post',//HTTP请求类型
+						timeout:10000,//超时时间设置为10秒；
+						success:function(data){
+							if(data.code==1){
+								mui.back();
+							}
+							if(data.msg=='用户名已存在，请直接登录'){
+								mui.later(function(){
+									mui.back()  
+								},1000)
+							}
+							mui.toast(data.msg)
+						},
+						error:function(xhr,type,errorThrown){
+							
+						}
+					});
+					return false;
+				});
+			});
+		</script>
+	</body>
+
+</html>

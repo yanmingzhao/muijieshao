@@ -1,0 +1,68 @@
+{
+	"index.html": {
+		"href": "index.html",
+		"resources": [
+			"js/mui.min.js",
+			"css/mui.min.css",
+			"fonts/mui.ttf",
+			"images/60x60.gif",
+			"html/buttons-with-block.html"
+		],
+		"refer": [
+			"html/buttons-with-block.html",
+			"html/checkbox.html",
+			"html/buttons-with-badges.html"
+		],
+		"priority": 0
+	},
+	"html/buttons-with-block.html": {
+		"resources": [
+			"index.html",
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"index.html"
+		]
+	},
+	"html/checkbox.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"html/buttons-with-badges.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"html/login.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		],
+		"refer": [
+			"html/index.html",
+			"html/reg.html"
+		]
+	},
+	"html/reg.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	},
+	"html/index.html": {
+		"resources": [
+			"js/mui.min.js",
+			"fonts/mui.ttf",
+			"css/mui.min.css"
+		]
+	}
+}

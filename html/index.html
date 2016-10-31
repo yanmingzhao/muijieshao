@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width,initial-scale=1,minimum-scale=1,maximum-scale=1,user-scalable=no" />
+		<title></title>
+		<link href="../css/mui.min.css" rel="stylesheet" />
+		<style>
+			body,
+			.mui-off-canvas-left,.mui-off-canvas-right,.mui-off-canvas-left .mui-content,.mui-off-canvas-right .mui-content{
+				background-color: #2B2F3E !important;
+				color: #fff;
+			}
+			
+			.mui-table-view-cell>a:not(.mui-btn) {
+				color: #fff;
+			}
+			
+			.mui-table-view {
+				background: none;
+				margin: 0 !important;
+			}
+			
+			.mui-table-view:after {
+				display: none;
+			}
+			.mui-table-view-cell:last-child:after {
+				height: 1px;
+			}
+			.mui-table-view-cell {
+				font-style: normal;
+				opacity: 0.3;
+			}
+			.mui-current {
+				opacity: 1;
+				background: #E2394B;
+			}
+			
+			.mui-table-view-cell:after {
+				left: 0;
+			}
+			
+			.xmg-user-ui {
+				margin: 60px auto;
+				text-align: center;
+				width: 200px;
+				height: 88px;
+			}
+			
+			.xmg-user-ui img {
+				border: 1px solid rgba(255, 255, 255, .3);
+				box-sizing: content-box;
+				border-radius: 50%;
+				padding: 10px;
+			}
+			
+			.xmg-user-ui .xmg-user-show {
+				margin-top: 15px;
+				float: right;
+			}
+			
+			.xmg-user-ui span {
+				margin-top: 8px;
+				text-align: left;
+				display: block;
+			}
+			
+			.xmg-color-orange {
+				color: #FF6A00;
+			}
+		</style>
+	</head>
+
+	<body>
+		<!-- 主界面菜单同时移动 -->
+		    <!-- 侧滑导航根容器 -->
+		    <div class="mui-off-canvas-wrap mui-draggable">
+		        <!-- 主页面容器 -->
+		        <div class="mui-inner-wrap">
+		            <!-- 菜单容器 -->
+		            <aside class="mui-off-canvas-left" id="offCanvasSide">
+		                <div class="mui-scroll-wrapper">
+		                    <div class="mui-scroll">
+		                        <!-- 菜单具体展示内容 -->
+		                        <div class="mui-content">
+									<div class="xmg-user-ui">
+										<img src="images/60x60.gif" width="54" />
+										<div class="xmg-user-show">
+											yanming91
+											<span class="xmg-color-orange">0 C币</span>
+										</div>
+									</div>
+									<ul class="mui-table-view" id="asideList">
+										<li active="1" class="mui-table-view-cell mui-current">
+											<a href="buttons-with-badges.html">头条</a>
+										</li>
+										<li class="mui-table-view-cell">
+											<a href="buttons-with-block.html">博客</a>
+										</li>
+										<li class="mui-table-view-cell">
+											<a href="checkbox.html">论坛</a>
+										</li>
+									</ul>
+								</div>
+		                    </div>
+		                </div>
+		            </aside>
+		            <nav class="mui-bar mui-bar-tab">
+					    <a class="mui-tab-item mui-active">
+					        <span class="mui-icon mui-icon-home"></span>
+					        <span class="mui-tab-label">首页</span>
+					    </a>
+					    <a class="mui-tab-item">
+					        <span class="mui-icon mui-icon-phone"></span>
+					        <span class="mui-tab-label">电话</span>
+					    </a>
+					    <a class="mui-tab-item">
+					        <span class="mui-icon mui-icon-email"></span>
+					        <span class="mui-tab-label">邮件</span>
+					    </a>
+					    <a class="mui-tab-item">
+					        <span class="mui-icon mui-icon-gear"></span>
+					        <span class="mui-tab-label">设置</span>
+					    </a>
+					</nav>
+		            <!-- 主页面标题 -->
+		            <header class="mui-bar mui-bar-nav">
+		                <a class="mui-icon mui-action-menu mui-icon-bars mui-pull-left" href="#offCanvasSide"></a>
+		                <h1 class="mui-title">标题</h1>
+		            </header>
+		            <!-- 主页面内容容器 -->
+		            <div class="mui-content mui-scroll-wrapper">
+		                <div class="mui-scroll">
+		                    <!-- 主界面具体展示内容 -->
+		                    
+		                </div>
+		            </div>
+		       	 <div class="mui-off-canvas-backdrop"></div>
+		        </div>
+		    </div>
+
+	</body>
+	<script src="../js/mui.min.js"></script>
+	<script>
+	mui.init();
+	mui.plusReady(function(){
+		mui('#asideList').on('tap','li',function(){
+			var active = this.getAttribute('active')
+			if(+active){
+				return;
+			};
+			var asidelist  = document.getElementById("asideList");
+			var li  = document.getElementsByTagName('li');
+			for (var i = 0; i < li.length; i++) {
+				li[i].index = i;
+			    li[i].classList.remove('mui-current')
+				li[i].removeAttribute('active');
+			}
+			this.classList.add('mui-current')
+			this.setAttribute('active',1);
+			var id = this.index;
+			var children = this.children[0];
+			var href = children.href;
+				mui.openWindow(href,"asideList"+id,{})
+			return false;
+		});
+	});
+	</script>
+
+</html>
